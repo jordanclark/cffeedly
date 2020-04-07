@@ -21,9 +21,9 @@ Feedly represents dates as numbers, use the included epochParse() to convert the
 ## Getting Started
 ```
 feedly = new cffeedly.feedly( refreshToken= "..." );
-collections= feedly.getCollections();
-if( collections.success && arrayLen( collections.data ) ) {
-	articles = feedly.getStream( collections.data[1].feeds[1].id ).data.items;
+articles= feedly.getStream( "feed/http://feeds.engadget.com/weblogsinc/engadget" );
+if( articles.success ) { 
+	dump( articles.data.items );
 }
 ```
 
