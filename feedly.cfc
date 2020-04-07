@@ -138,7 +138,9 @@ component {
 			}
 		}
 		this.setLastReq();
-		out.http= http;
+		if( this.debug ) {
+			out.http= http;
+		}
 		out.response= toString( http.fileContent );
 		out.statusCode= http.responseHeader.Status_Code ?: 500;
 		if( len( out.error ) ) {
@@ -223,6 +225,17 @@ component {
 	struct function removeFeedFromCollection( required string collectionId, required string feedId, boolean keepOrphanFeeds= false ) {
 		return this.getAuthenticated() ?: this.apiRequest( api= "DELETE /collections/{collectionId}/feeds/{feedId}", argumentCollection= arguments );
 	}
+
+	/**
+	 * https://developer.feedly.com/v3/enterprisecollections/#get-the-list-of-enterprise-collections-enterprise-only
+	 */
+	struct function getTeamCollections( boolean includedDeleted= false, boolean withStats= false ) {
+		return this.getAuthenticated() ?: this.apiRequest( api= "GET /enterprise/collections", argumentCollection= arguments );
+	}
+	struct function getTeamCollection( required string categoryId ) {
+		return this.getAuthenticated() ?: this.apiRequest( api= "GET /enterprise/collections/{categoryId}", argumentCollection= arguments );
+	}
+	
 
 	/**
 	 * https://developer.feedly.com/v3/categories/
