@@ -35,5 +35,5 @@ Run the following from commandbox:
 `box install cffeedly`
 
 ## Changes
-2020-04-03 Open source release
+2020-04-07 Open source release
 

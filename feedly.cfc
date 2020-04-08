@@ -349,9 +349,6 @@ component {
 	) {
 		return this.getAuthenticated() ?: this.apiRequest( api= "GET /mixes/{streamId}/contents", argumentCollection= arguments );
 	}
-	struct function getFeedMix( required string feedId ) {
-		return this.getMix( arguments.feedId );
-	}
 
 	/**
 	 * https://developer.feedly.com/v3/search/#search-the-content-of-a-stream
