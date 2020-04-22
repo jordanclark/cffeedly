@@ -1,5 +1,5 @@
 component {
-	cfprocessingdirective( preserveCase=true );
+	// cfprocessingdirective( preserveCase=true );
 
 	function init(
 		string accessToken= ""
@@ -9,8 +9,9 @@ component {
 	,	string userAgent= "CFML API Agent 0.1"
 	,	numeric throttle= 100
 	,	numeric httpTimeOut= 60
-	,	boolean debug= ( request.debug ?: false )
+	,	boolean debug
 	) {
+		arguments.debug = ( arguments.debug ?: request.debug ?: false );
 		structAppend( this, arguments, true );
 		this.lastRequest= server.feedly_lastRequest ?: 0;
 		return this;
@@ -82,16 +83,16 @@ component {
 		var http= {};
 		var item= "";
 		var out= {
-			args= arguments
-		,	success= false
-		,	error= ""
-		,	status= ""
-		,	statusCode= 0
-		,	response= ""
-		,	verb= listFirst( arguments.api, " " )
-		,	requestUrl= this.apiUrl
-		,	data= {}
-		,	delay= 0
+			"args"= arguments
+		,	"success"= false
+		,	"error"= ""
+		,	"status"= ""
+		,	"statusCode"= 0
+		,	"response"= ""
+		,	"verb"= listFirst( arguments.api, " " )
+		,	"requestUrl"= this.apiUrl
+		,	"data"= {}
+		,	"delay"= 0
 		};
 		out.requestUrl &= listRest( out.args.api, " " );
 		structDelete( out.args, "api" );
