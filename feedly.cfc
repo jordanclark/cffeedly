@@ -314,7 +314,7 @@ component {
 	,	numeric count= 20
 	,	string ranked= "newest" // oldest, engagement
 	,	boolean unreadOnly= false
-	,	numeric newerThan
+	,	string newerThan= ""
 	,	string continuation
 	,	boolean showMuted= false
 	,	boolean importantOnly= false
