@@ -203,6 +203,10 @@ component {
 		return dateAdd( "l", arguments.date, dateConvert( "utc2Local", "January 1 1970 00:00" ) );
 	}
 
+	date function dateToEpoch( required date date ) {
+		return dateDiff( "l", dateConvert( "utc2Local", "January 1 1970 00:00" ), arguments.date );
+	}
+
 	
 	/**
 	 * https://developer.feedly.com/v3/profile/
