@@ -371,4 +371,133 @@ component {
 		return this.getAuthenticated() ?: this.apiRequest( api= "GET /search/contents", argumentCollection= arguments );
 	}
 
+	/**
+	 * https://developer.feedly.com/v3/markers/#get-the-list-of-unread-counts
+	 */
+	struct function getMarkers() {
+		return this.getAuthenticated() ?: this.apiRequest( api= "GET /markers/counts" );
+
+	}
+
+	/**
+	 * https://developer.feedly.com/v3/markers/#mark-a-feed-as-read
+	 */
+	struct function markFeedRead( required feedIds, required string last ) {
+		if( isSimpleValue( arguments.feedIds ) ) {
+			arguments.feedIds= listToArray( arguments.feedIds, "|" );
+		}
+		var body = {
+			"action"= "markAsRead"
+		,	"type"= "feeds"
+		,	"feedIds"= arguments.feedIds
+		};
+		if( isNumeric( arguments.last ) ) {
+			body[ "asOf" ]= arguments.last;
+		} else {
+			body[ "lastReadEntryId" ]= arguments.last;
+		}
+		return this.getAuthenticated() ?: this.apiRequest( api= "POST /markers", body= body );
+	}
+
+	/**
+	 * https://developer.feedly.com/v3/markers/#mark-a-category-as-read
+	 */
+	struct function markCategoryRead( required categoryIds, required string last ) {
+		if( isSimpleValue( arguments.categoryIds ) ) {
+			arguments.categoryIds= listToArray( arguments.categoryIds, "|" );
+		}
+		var body = {
+			"action"= "markAsRead"
+		,	"type"= "categories"
+		,	"categoryIds"= arguments.categoryIds
+		};
+		if( isNumeric( arguments.last ) ) {
+			body[ "asOf" ]= arguments.last;
+		} else {
+			body[ "lastReadEntryId" ]= arguments.last;
+		}
+		return this.getAuthenticated() ?: this.apiRequest( api= "POST /markers", body= body );
+	}
+
+	/**
+	 * https://developer.feedly.com/v3/markers/#mark-a-category-as-read
+	 */
+	struct function markTagRead( required tagIds, required string last ) {
+		if( isSimpleValue( arguments.tagIds ) ) {
+			arguments.tagIds= listToArray( arguments.tagIds, "|" );
+		}
+		var body = {
+			"action"= "markAsRead"
+		,	"type"= "tags"
+		,	"tagIds"= arguments.tagIds
+		};
+		if( isNumeric( arguments.last ) ) {
+			body[ "asOf" ]= arguments.last;
+		} else {
+			body[ "lastReadEntryId" ]= arguments.last;
+		}
+		return this.getAuthenticated() ?: this.apiRequest( api= "POST /markers", body= body );
+	}
+
+	/**
+	 * https://developer.feedly.com/v3/markers/#mark-one-or-multiple-articles-as-read
+	 */
+	struct function markAsRead( required entryIds ) {
+		if( isSimpleValue( arguments.entryIds ) ) {
+			arguments.entryIds= listToArray( arguments.entryIds, "|" );
+		}
+		var body = {
+			"action"= "markAsRead"
+		,	"type"= "entries"
+		,	"entryIds"= arguments.entryIds
+		};
+		return this.getAuthenticated() ?: this.apiRequest( api= "POST /markers", body= body );
+	}
+
+	/**
+	 * https://developer.feedly.com/v3/markers/#mark-one-or-multiple-articles-as-read
+	 */
+	struct function keepUnread( required entryIds ) {
+		if( isSimpleValue( arguments.entryIds ) ) {
+			arguments.entryIds= listToArray( arguments.entryIds, "|" );
+		}
+		var body = {
+			"action"= "keepUnread"
+		,	"type"= "entries"
+		,	"entryIds"= arguments.entryIds
+		};
+		return this.getAuthenticated() ?: this.apiRequest( api= "POST /markers", body= body );
+	}
+	
+	/**
+	 * https://developer.feedly.com/v3/markers/#mark-one-or-multiple-articles-as-saved
+	 */
+	struct function markAsSaved( required entryIds ) {
+		if( isSimpleValue( arguments.entryIds ) ) {
+			arguments.entryIds= listToArray( arguments.entryIds, "|" );
+		}
+		var body = {
+			"action"= "markAsSaved"
+		,	"type"= "entries"
+		,	"entryIds"= arguments.entryIds
+		};
+		return this.getAuthenticated() ?: this.apiRequest( api= "POST /markers", body= body );
+	}
+
+	/**
+	 * https://developer.feedly.com/v3/markers/#mark-one-or-multiple-articles-as-unsaved
+	 */
+	struct function markAsUnsaved( required entryIds ) {
+		if( isSimpleValue( arguments.entryIds ) ) {
+			arguments.entryIds= listToArray( arguments.entryIds, "|" );
+		}
+		var body = {
+			"action"= "markAsUnsaved"
+		,	"type"= "entries"
+		,	"entryIds"= arguments.entryIds
+		};
+		return this.getAuthenticated() ?: this.apiRequest( api= "POST /markers", body= body );
+	}
+
+
 }
