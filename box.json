@@ -1,7 +1,7 @@
 {
     "name":"cffeedly",
     "slug":"cffeedly",
-    "version":"0.3.1",
+    "version":"0.3.2",
     "author":"Jordan Clark <jordanclark@gmail.com>",
     "keywords":[
         "feedly",
@@ -12,7 +12,7 @@
     ],
     "shortDescription":"API client for feedly.com",
     "type":"modules",
-    "location":"jordanclark/cffeedly#v0.3.1",
+    "location":"jordanclark/cffeedly#v0.3.2",
     "repository":{
         "URL":"https://github.com/jordanclark/cffeedly.git",
         "type":"GIT"
