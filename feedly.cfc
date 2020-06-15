@@ -81,7 +81,7 @@ component {
 				return auth;
 			}
 		}
-		return nullValue();
+		return javaCast( "null", 0 ); // nullValue();
 	}
 
 	struct function apiRequest( required string api ) {
