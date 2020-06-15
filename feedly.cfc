@@ -116,9 +116,9 @@ component {
 		if( out.verb == "GET" ) {
 			out.requestUrl &= this.structToQueryString( out.args, out.requestUrl, true );
 		} else if( structKeyExists( out.args, "body" ) ) {
-			out.body= serializeJSON( out.args.body );
+			out.body= serializeJSON( out.args.body, false, false );
 		} else if( !structIsEmpty( out.args ) ) {
-			out.body= serializeJSON( out.args );
+			out.body= serializeJSON( out.args, false, false );
 		}
 		this.debugLog( "API: #uCase( out.verb )#: #out.requestUrl#" );
 		if( structKeyExists( out, "body" ) ) {
