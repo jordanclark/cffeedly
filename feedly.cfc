@@ -14,6 +14,7 @@ component {
 		arguments.debug = ( arguments.debug ?: request.debug ?: false );
 		structAppend( this, arguments, true );
 		this.lastRequest= server.feedly_lastRequest ?: 0;
+		this.epoch= dateConvert( "utc2Local", createDateTime( 1970, 1, 1, 0, 0, 0 ) );
 		return this;
 	}
 
@@ -205,11 +206,11 @@ component {
 	}
 
 	date function epochParse( required numeric date ) {
-		return dateAdd( "l", arguments.date, dateConvert( "utc2Local", "January 1 1970 00:00" ) );
+		return dateAdd( "l", arguments.date, this.epoch );
 	}
 
 	date function dateToEpoch( required date date ) {
-		return dateDiff( "l", dateConvert( "utc2Local", "January 1 1970 00:00" ), arguments.date );
+		return dateDiff( "s", this.epoch, arguments.date ) * 1000;
 	}
 
 	
