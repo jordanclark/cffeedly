@@ -195,9 +195,9 @@ component {
 			sValue= stInput[ sItem ];
 			if( !isNull( sValue ) && len( sValue ) ) {
 				if( bEncode ) {
-					sOutput &= amp & sItem & "=" & urlEncodedFormat( sValue );
+					sOutput &= amp & lCase( sItem ) & "=" & urlEncodedFormat( sValue );
 				} else {
-					sOutput &= amp & sItem & "=" & sValue;
+					sOutput &= amp & lCase( sItem ) & "=" & sValue;
 				}
 				amp= "&";
 			}
